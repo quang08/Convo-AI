@@ -1,31 +1,46 @@
-import React, { useState, useEffect } from "react";
-
+import React, { useState, useEffect, useRef } from "react";
 
 function Chat() {
   const apiKey = "";
-  console.log(apiKey);
   const [input, setInput] = useState("");
   const [newChat, setNewChat] = useState(false);
   const [typing, setTyping] = useState(false);
+  const [messages, setMessages] = useState([]); //to store the conversation history to send as a parameter to the API and to render the convo
   const [chatLog, setChatLog] = useState([
+    //welcoming log
     {
-      user: "gpt",
-      message: "Welcome! How may I help you today ?",
+      role: "assistant",
+      content: "Welcome! How may I help you today ?",
     },
     {
-      user: "me",
-      message: null,
+      role: "user",
+      content: null,
     },
   ]);
 
+  //to snap to the latest message
+  const messagesEndRef = useRef(null);
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages]);
 
-  const handleQuery = () => {
+  const handleQuery = async () => {
     setTyping(true);
-    let chatLogNew = [...chatLog, { user: "me", message: `${input}` }];
-    setChatLog(chatLogNew);
+    let messagesNew = [...messages, { role: "user", content: input }];
+    setMessages(messagesNew);
     setInput("");
 
-    fetch(`https://api.openai.com/v1/chat/completions`, {
+    // to remember the context as the API requires sending in the previous messages with this syntax of role and content
+    messages &&
+      setMessages([
+        ...messages,
+        {
+          role: "user",
+          content: input,
+        },
+      ]);
+
+    await fetch(`https://api.openai.com/v1/chat/completions`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -33,15 +48,14 @@ function Chat() {
       },
       body: JSON.stringify({
         model: `gpt-3.5-turbo`,
-        messages: [{ role: "user", content: input }],
+        messages: [...messages, { role: "user", content: input }], //sending in the previous messages and the new message
       }),
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
-        setChatLog([
-          ...chatLogNew,
-          { user: "gpt", message: `${data.choices[0].message.content}` },
+        setMessages([
+          ...messagesNew,
+          { role: "assistant", content: data.choices[0].message.content },
         ]);
       })
       .then(() => {
@@ -50,14 +64,25 @@ function Chat() {
   };
 
   const handleNewChat = () => {
-    setChatLog([
+    setMessages([
       {
-        user: "gpt",
-        message: null,
+        role: "assistant",
+        content: null,
       },
       {
-        user: "me",
-        message: null,
+        role: "user",
+        content: null,
+      },
+    ]);
+
+    setChatLog([
+      {
+        role: "assistant",
+        content: null,
+      },
+      {
+        role: "user",
+        content: null,
       },
     ]);
   };
@@ -76,26 +101,49 @@ function Chat() {
 
       <div className="h-[650px] overflow-y-scroll scroll-snap-type-y-mandatory">
         {chatLog.map((log, i) => {
-          if (log.user === "gpt" && log.message) {
+          if (log.role === "assistant" && log.content) {
             return (
               <div key={i} className="flex">
                 <div className="text-white bg-gray-500 md:max-w-xl p-2 rounded-lg mt-10 text-left max-w-max scroll-snap-align-end">
-                  {log.message}
+                  {log.content}
                 </div>
                 <div className="flex flex-1"></div>
               </div>
             );
-          } else if (log.user === "me" && log.message) {
+          } else if (log.role === "user" && log.content) {
             return (
               <div key={i} className="flex">
                 <div className="flex flex-1"></div>
                 <div className="text-white bg-teal-500 p-2 rounded-lg mt-10 text-right max-w-max scroll-snap-align-end">
-                  {log.message}
+                  {log.content}
                 </div>
               </div>
             );
           }
         })}
+
+        {messages.map((message, i) => {
+          if (message.role === "assistant" && message.content !== null) {
+            return (
+              <div key={i} className="flex">
+                <div className="text-white bg-gray-500 md:max-w-xl p-2 rounded-lg mt-10 text-left max-w-max scroll-snap-align-end">
+                  {message.content}
+                </div>
+                <div className="flex flex-1"></div>
+              </div>
+            );
+          } else if (message.role === "user" && message.content !== null) {
+            return (
+              <div key={i} className="flex">
+                <div className="flex flex-1"></div>
+                <div className="text-white bg-teal-500 p-2 rounded-lg mt-10 text-right max-w-max scroll-snap-align-end">
+                  {message.content}
+                </div>
+              </div>
+            );
+          }
+        })}
+        <div ref={messagesEndRef} />
         {typing && (
           <div className="text-white bg-gray-500 p-3 rounded-lg mt-10 flex max-w-max">
             <div className="w-1 h-1 rounded-full bg-gray-200 mr-1 animate-pulse"></div>
@@ -112,6 +160,9 @@ function Chat() {
           value={input}
           onChange={(e) => setInput(e.target.value)}
           autoFocus
+          onKeyDown={(e) => {
+            if (e.key === "Enter") handleQuery();
+          }}
         />
         <button
           onClick={handleQuery}
