@@ -3,7 +3,7 @@ import { createContext, useState } from "react";
 const AppContext = createContext();
 
 export function AppContextProvider({ children }) {
-  const apiKey = "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";
+  const apiKey = "";
   const [input, setInput] = useState("");
   const [newChat, setNewChat] = useState(false);
   const [typing, setTyping] = useState(false);
