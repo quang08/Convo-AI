@@ -29,7 +29,7 @@
 # Getting Started
 - `cd` into the folder
 - `npm i`
-- Get your API key [here](https://platform.openai.com/account/api-keys) and paste it in `let apiKey = ""`
+- Get your API key [here](https://platform.openai.com/account/api-keys) and paste it in `let apiKey = ""` in `src/context.js`
 - `npm start`
 - Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
