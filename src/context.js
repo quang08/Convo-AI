@@ -3,7 +3,8 @@ import { createContext, useState } from "react";
 const AppContext = createContext();
 
 export function AppContextProvider({ children }) {
-  const apiKey = "";
+  const apiKey = "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";
+  const [showSidebar, setShowSidebar] = useState(false);
   const [input, setInput] = useState("");
   const [newChat, setNewChat] = useState(false);
   const [typing, setTyping] = useState(false);
@@ -81,6 +82,7 @@ export function AppContextProvider({ children }) {
         content: null,
       },
     ]);
+    setShowSidebar(false);
   };
 
   return (
@@ -93,6 +95,8 @@ export function AppContextProvider({ children }) {
         typing,
         input,
         setInput,
+        showSidebar,
+        setShowSidebar
       }}
     >
       {children}

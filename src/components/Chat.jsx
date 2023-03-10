@@ -4,6 +4,7 @@ import Header from "./Header";
 import Convo from "./Convo";
 import Loading from "./Loading";
 import Input from "./Input";
+import Sidebar from "./Sidebar";
 
 function Chat() {
   const {
