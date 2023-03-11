@@ -3,7 +3,7 @@ import { createContext, useState } from "react";
 const AppContext = createContext();
 
 export function AppContextProvider({ children }) {
-  const apiKey = "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";
+  const apiKey = "";
   const [showSidebar, setShowSidebar] = useState(false);
   const [input, setInput] = useState("");
   const [newChat, setNewChat] = useState(false);
