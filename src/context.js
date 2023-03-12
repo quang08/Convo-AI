@@ -91,6 +91,7 @@ export function AppContextProvider({ children }) {
     ]);
     setShowSidebar(false);
     localStorage.clear("messages");
+    setApiInput("");
   };
 
   const handleModal = () => {
