@@ -4,18 +4,10 @@ import Header from "./Header";
 import Convo from "./Convo";
 import Loading from "./Loading";
 import Input from "./Input";
-import Sidebar from "./Sidebar";
+import Modal from "./Modal";
 
 function Chat() {
-  const {
-    handleNewChat,
-    handleQuery,
-    chatLog,
-    messages,
-    typing,
-    input,
-    setInput,
-  } = useContext(AppContext);
+  const { messages, typing, showModal } = useContext(AppContext);
 
   //to snap to the latest message
   const messagesEndRef = useRef(null);
@@ -24,9 +16,7 @@ function Chat() {
   }, [messages]);
 
   return (
-    <div className="w-screen h-screen p-5 flex flex-col justify-between gap-2">
-      <Header />
-
+    <div className="w-screen h-screen p-5 flex flex-col justify-between gap-2 z-10">
       <div className="flex-1 overflow-y-scroll">
         <Convo />
 
@@ -39,6 +29,7 @@ function Chat() {
         <Input />
       </div>
 
+      {(showModal) && <Modal />}
     </div>
   );
 }

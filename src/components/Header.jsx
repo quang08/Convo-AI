@@ -3,12 +3,12 @@ import AppContext from "../context";
 import Sidebar from "./Sidebar";
 
 function Header() {
-  const { handleNewChat, setShowSidebar, showSidebar } = useContext(AppContext);
+  const { showSidebar } = useContext(AppContext);
 
   return (
-    <div className="flex justify-between pt-1 pb-1 h-[5%]">
+    <div className="flex justify-between items-center p-5 h-[8%] border-b border-neutral-800 w-full">
       <Sidebar />
-      {!showSidebar && <h1 className="text-3xl font-bold cursor-pointer">ConvoAI</h1>}
+      {!showSidebar && <h1 className="text-4xl font-bold cursor-pointer">ConvoAI</h1>}
     </div>
   );
 }

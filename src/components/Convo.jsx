@@ -1,8 +1,37 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import AppContext from "../context";
 
 function Convo() {
-  const { chatLog, messages } = useContext(AppContext);
+  const { chatLog, messages, setChatLog } = useContext(AppContext);
+  //check if there is an api key in local storage and set the chat log accordingly
+  const apiInputLocal = localStorage.getItem("apiInput");
+  useEffect(() => {
+    if (apiInputLocal) {
+      setChatLog([
+        //welcoming log
+        {
+          role: "assistant",
+          content: "Welcome! How may I help you today?",
+        },
+        {
+          role: "user",
+          content: null,
+        },
+      ]);
+    } else {
+      setChatLog([
+        {
+          role: "assistant",
+          content:
+            "Welcome! Please enter your API key in the Menu to start chatting.",
+        },
+        {
+          role: "user",
+          content: null,
+        },
+      ]);
+    }
+  }, [apiInputLocal]);
 
   return (
     <>

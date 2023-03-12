@@ -3,23 +3,41 @@ import { createContext, useState } from "react";
 const AppContext = createContext();
 
 export function AppContextProvider({ children }) {
-  const apiKey = "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";
+  const [isOpened, setIsOpened] = useState(false);
+  const [showModal, setShowModal] = useState(false);
   const [showSidebar, setShowSidebar] = useState(false);
   const [input, setInput] = useState("");
-  const [newChat, setNewChat] = useState(false);
+  const [apiInput, setApiInput] = useState("");
   const [typing, setTyping] = useState(false);
   const [messages, setMessages] = useState([]); //to store the conversation history to send as a parameter to the API and to render the convo
-  const [chatLog, setChatLog] = useState([
-    //welcoming log
-    {
-      role: "assistant",
-      content: "Welcome! How may I help you today ?",
-    },
-    {
-      role: "user",
-      content: null,
-    },
-  ]);
+  const [chatLog, setChatLog] = useState(() => {
+    const apiInput = localStorage.getItem("apiInput");
+    if (apiInput) {
+      return [
+        {
+          role: "assistant",
+          content: "Welcome! How may I help you today?",
+        },
+        {
+          role: "user",
+          content: null,
+        },
+      ];
+    } else {
+      return [
+        //welcoming log
+        {
+          role: "assistant",
+          content:
+            "Welcome! Please enter your API key in the Menu to start chatting.",
+        },
+        {
+          role: "user",
+          content: null,
+        },
+      ];
+    }
+  });
 
   const handleQuery = async () => {
     setTyping(true);
@@ -41,7 +59,7 @@ export function AppContextProvider({ children }) {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${apiKey}`,
+        Authorization: `Bearer ${localStorage.getItem("apiInput")}`,
       },
       body: JSON.stringify({
         model: `gpt-3.5-turbo`,
@@ -71,18 +89,29 @@ export function AppContextProvider({ children }) {
         content: null,
       },
     ]);
+    setShowSidebar(false);
+    localStorage.clear("messages");
+  };
 
+  const handleModal = () => {
+    setShowModal(true);
+    setShowSidebar(false);
+  };
+
+  const handleAPI = (e) => {
+    ///store apiInput into localStorage
+    localStorage.setItem("apiInput", apiInput);
+    setShowModal(false);
     setChatLog([
       {
         role: "assistant",
-        content: null,
+        content: "Welcome! How may I help you today?",
       },
       {
         role: "user",
         content: null,
       },
     ]);
-    setShowSidebar(false);
   };
 
   return (
@@ -91,12 +120,22 @@ export function AppContextProvider({ children }) {
         handleNewChat,
         handleQuery,
         chatLog,
+        setChatLog,
         messages,
+        setMessages,
         typing,
         input,
         setInput,
         showSidebar,
-        setShowSidebar
+        setShowSidebar,
+        showModal,
+        setShowModal,
+        handleModal,
+        isOpened,
+        setIsOpened,
+        apiInput,
+        setApiInput,
+        handleAPI,
       }}
     >
       {children}
