@@ -14,7 +14,7 @@ function Input() {
         placeholder="Your message here..."
         autoFocus
         onKeyDown={(e) => {
-          if (e.key === "Enter") handleQuery();
+          if (e.key === "Enter" && apiInputLocal) handleQuery();
         }}
       />
       <button

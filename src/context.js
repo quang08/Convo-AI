@@ -79,18 +79,9 @@ export function AppContextProvider({ children }) {
   };
 
   const handleNewChat = () => {
-    setMessages([
-      {
-        role: "assistant",
-        content: null,
-      },
-      {
-        role: "user",
-        content: null,
-      },
-    ]);
+    setMessages([]);
     setShowSidebar(false);
-    localStorage.clear("messages");
+    localStorage.clear("apiInput");
     setApiInput("");
   };
 
@@ -103,16 +94,16 @@ export function AppContextProvider({ children }) {
     ///store apiInput into localStorage
     localStorage.setItem("apiInput", apiInput);
     setShowModal(false);
-    setChatLog([
-      {
-        role: "assistant",
-        content: "Welcome! How may I help you today?",
-      },
-      {
-        role: "user",
-        content: null,
-      },
-    ]);
+    // setChatLog([
+    //   {
+    //     role: "assistant",
+    //     content: "Welcome! How may I help you today?",
+    //   },
+    //   {
+    //     role: "user",
+    //     content: null,
+    //   },
+    // ]);
   };
 
   return (
