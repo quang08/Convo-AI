@@ -16,8 +16,8 @@ function Chat() {
   }, [messages]);
 
   return (
-    <div className="w-screen h-screen p-5 flex flex-col justify-between gap-2 z-10">
-      <div className="flex-1 overflow-y-scroll">
+    <div className="w-screen h-screen p-5 flex flex-col justify-between z-10">
+      <div className="overflow-y-scroll max-h-[700px]">
         <Convo />
 
         <div ref={messagesEndRef} />
@@ -29,7 +29,7 @@ function Chat() {
         <Input />
       </div>
 
-      {(showModal) && <Modal />}
+      {showModal && <Modal />}
     </div>
   );
 }

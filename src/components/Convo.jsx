@@ -39,7 +39,7 @@ function Convo() {
         if (log.role === "assistant" && log.content) {
           return (
             <div key={i} className="flex">
-              <div className="text-white bg-gray-500 md:max-w-xl p-2 rounded-lg mt-10 text-left max-w-max scroll-snap-align-end">
+              <div className="text-white bg-gray-500 md:max-w-xl p-2 rounded-lg mt-10 text-left max-w-max">
                 {log.content}
               </div>
               <div className="flex flex-1"></div>
@@ -49,7 +49,7 @@ function Convo() {
           return (
             <div key={i} className="flex">
               <div className="flex flex-1"></div>
-              <div className="text-white bg-teal-500 p-2 rounded-lg mt-10 text-right max-w-max scroll-snap-align-end">
+              <div className="text-white bg-teal-500 p-2 rounded-lg mt-10 text-right max-w-max">
                 {log.content}
               </div>
             </div>
@@ -61,7 +61,7 @@ function Convo() {
         if (message.role === "assistant" && message.content !== null) {
           return (
             <div key={i} className="flex">
-              <div className="text-white bg-gray-500 md:max-w-xl p-2 rounded-lg mt-10 text-left max-w-max scroll-snap-align-end">
+              <div className="text-white bg-gray-500 md:max-w-xl p-2 rounded-lg mt-10 text-left max-w-max">
                 {message.content}
               </div>
               <div className="flex flex-1"></div>
@@ -71,7 +71,7 @@ function Convo() {
           return (
             <div key={i} className="flex">
               <div className="flex flex-1"></div>
-              <div className="text-white bg-teal-500 p-2 rounded-lg mt-10 text-right max-w-max scroll-snap-align-end">
+              <div className="text-white bg-teal-500 p-2 rounded-lg mt-10 text-right max-w-max">
                 {message.content}
               </div>
             </div>
