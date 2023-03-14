@@ -3,6 +3,7 @@ import AppContext from "../context";
 
 function Convo() {
   const { chatLog, messages, setChatLog } = useContext(AppContext);
+
   //check if there is an api key in local storage and set the chat log accordingly
   const apiInputLocal = localStorage.getItem("apiInput");
   useEffect(() => {
@@ -39,7 +40,7 @@ function Convo() {
         if (log.role === "assistant" && log.content) {
           return (
             <div key={i} className="flex">
-              <div className="text-white bg-gray-500 md:max-w-xl p-2 rounded-lg mt-10 text-left max-w-max">
+              <div className="dark:text-white text-black dark:bg-gray-500 bg-gray-300 md:max-w-xl p-2 rounded-lg mt-10 text-left max-w-max">
                 {log.content}
               </div>
             </div>
@@ -47,7 +48,7 @@ function Convo() {
         } else if (log.role === "user" && log.content) {
           return (
             <div key={i} className="flex justify-end">
-              <div className="text-white bg-teal-500 p-2 rounded-lg mt-10 text-right max-w-max">
+              <div className="dark:text-white text-black bg-teal-500 p-2 rounded-lg mt-10 text-right max-w-max">
                 {log.content}
               </div>
             </div>
@@ -59,7 +60,7 @@ function Convo() {
         if (message.role === "assistant" && message.content !== null) {
           return (
             <div key={i} className="flex">
-              <div className="text-white bg-gray-500 md:max-w-xl p-2 rounded-lg mt-10 text-left max-w-max">
+              <div className="dark:text-white text-black dark:bg-gray-500 bg-gray-300 md:max-w-xl p-2 rounded-lg mt-10 text-left max-w-max">
                 {message.content}
               </div>
             </div>
@@ -67,7 +68,7 @@ function Convo() {
         } else if (message.role === "user" && message.content !== null) {
           return (
             <div key={i} className="flex justify-end">          
-              <div className="text-white bg-teal-500 p-2 rounded-lg mt-10 text-right max-w-max">
+              <div className="dark:text-white text-black bg-teal-500 p-2 rounded-lg mt-10 text-right max-w-max">
                 {message.content}
               </div>
             </div>

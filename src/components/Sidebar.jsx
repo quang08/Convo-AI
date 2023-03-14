@@ -3,7 +3,8 @@ import AppContext from "../context";
 import Socials from "./Socials";
 
 function Sidebar() {
-  const { setShowSidebar, showSidebar, handleNewChat, handleModal } = useContext(AppContext);
+  const { setShowSidebar, showSidebar, handleNewChat, handleModal } =
+    useContext(AppContext);
 
   return (
     <>
@@ -12,21 +13,21 @@ function Sidebar() {
           className="flex flex-col items-center justify-center w-8 h-8 cursor-pointer transition duration-300 hover:ring-2 ring-teal-500 rounded-md p-1"
           onClick={() => setShowSidebar(true)}
         >
-          <div className="w-full h-px bg-white"></div>
-          <div className="w-full h-px mt-2 bg-white"></div>
-          <div className="w-full h-px mt-2 bg-white"></div>
+          <div className="w-full h-px dark:bg-white bg-black"></div>
+          <div className="w-full h-px mt-2 dark:bg-white bg-black"></div>
+          <div className="w-full h-px mt-2 dark:bg-white bg-black"></div>
         </div>
       )}
 
       <div
-        className={`top-0 left-0 w-full md:max-w-[350px] bg-neutral-900 p-3 text-white fixed h-[100vh] md:h-[98vh] z-40 ease-in-out md:mt-2 duration-500 md:rounded-xl ${
+        className={`dark:text-white shadow-2xl text-black top-0 left-0 w-full md:max-w-[350px] dark:bg-neutral-900 bg-slate-50 p-3 fixed h-[100vh] md:h-[98vh] z-40 ease-in-out md:mt-2 duration-500 md:rounded-xl ${
           showSidebar ? "translate-x-0 md:m-2" : "-translate-x-full"
         }`}
       >
         <div className="flex w-full justify-between p-2 items-center">
           <div className="text-4xl font-bold">Menu</div>
           <button
-            className="p-2 text-lg font-bold rounded-md w-8 h-8 border-gray-400 cursor-pointer transition duration-300  hover:bg-teal-500 hover:ring-2 flex justify-center items-center"
+            className="dark:text-white text-black p-2 text-lg font-bold rounded-md w-8 h-8 border-gray-400 cursor-pointer transition duration-300  hover:ring-1 flex justify-center items-center ring-teal-500"
             onClick={() => setShowSidebar(!showSidebar)}
           >
             X
@@ -36,7 +37,7 @@ function Sidebar() {
         <div className="flex flex-col p-2 mt-5 h-[93%] gap-4">
           <button
             onClick={() => handleNewChat()}
-            className="text-white bg-teal-500 p-2 rounded-lg text-lg transition duration-300 hover:bg-teal-400 font-bold flex items-center justify-center md:justify-start"
+            className="dark:text-white text-black dark:bg-teal-500 bg-teal-400 p-2 rounded-lg text-lg transition duration-300 dark:hover:bg-teal-400 hover:bg-teal-300 font-bold flex items-center justify-center md:justify-start"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -55,7 +56,7 @@ function Sidebar() {
           </button>
 
           <button
-            className="rounded-lg text-lg bg-teal-500 p-2 font-bold transition duration-300 hover:bg-teal-400 flex items-center justify-center md:justify-start"
+            className="dark:text-white text-black rounded-lg text-lg dark:bg-teal-500 bg-teal-400 p-2 font-bold transition duration-300 dark:hover:bg-teal-400 hover:bg-teal-300 flex items-center justify-center md:justify-start"
             onClick={handleModal}
           >
             <svg
@@ -85,18 +86,3 @@ function Sidebar() {
 
 export default Sidebar;
 
-{
-  /*
-<h4>Enter your API key</h4>
-          <div className="flex justify-between">
-            <input
-              type="text"
-              // value={{}}
-              className="rounded-lg focus:outline-none text-black p-1 flex flex-1"
-              onKeyDown={{}}
-            />
-
-            <button className="bg-teal-500 rounded-lg p-2 ml-2">Submit</button>
-          </div>
-*/
-}

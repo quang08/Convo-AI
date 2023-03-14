@@ -7,7 +7,7 @@ function Input() {
   return (
     <>
       <input
-        className="rounded-lg text-black p-2 flex-1 bg-gray-300 focus:outline-none"
+        className="rounded-lg text-black p-2 flex-1 dark:bg-gray-300 bg-gray-200 focus:outline-none"
         type="text"
         value={input}
         onChange={(e) => setInput(e.target.value)}
@@ -19,8 +19,8 @@ function Input() {
       />
       <button
         onClick={() => handleQuery()}
-        className="ml-3 p-1 w-20 text-sm bg-teal-500 rounded-lg transition duration-300 hover:bg-teal-400 disabled:bg-gray-500"
-        disabled = {typing === true || apiInputLocal === null}
+        className="ml-3 p-1 w-20 text-sm dark:bg-teal-500 bg-teal-400 text-white rounded-lg transition duration-300 hover:bg-teal-400 disabled:bg-gray-500 dark:disabled:bg-gray-500"
+        disabled={typing === true || apiInputLocal === null}
       >
         Submit
       </button>
