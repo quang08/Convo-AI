@@ -9,7 +9,7 @@ function Sidebar() {
     <>
       {!showSidebar && (
         <div
-          className="flex flex-col items-center justify-center w-8 h-8 cursor-pointer"
+          className="flex flex-col items-center justify-center w-8 h-8 cursor-pointer transition duration-300 hover:ring-2 ring-teal-500 rounded-md p-1"
           onClick={() => setShowSidebar(true)}
         >
           <div className="w-full h-px bg-white"></div>
@@ -54,7 +54,10 @@ function Sidebar() {
             <div></div>
           </button>
 
-          <button className="rounded-lg text-lg bg-teal-500 p-2 font-bold transition duration-300 hover:bg-teal-400 flex items-center justify-center md:justify-start" onClick={handleModal}>
+          <button
+            className="rounded-lg text-lg bg-teal-500 p-2 font-bold transition duration-300 hover:bg-teal-400 flex items-center justify-center md:justify-start"
+            onClick={handleModal}
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
