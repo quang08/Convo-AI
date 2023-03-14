@@ -2,6 +2,7 @@
 - Implemented OpenAI's newly-released API `gpt-3.5-turbo`
 - Designed a new User Interface with smooth User Experience (snap to latest message, animated loading indicator, hovering effects)
 - Use your own API to converse with the bot !
+- Switchable theme - persist through refresh
 
 # First Mount
 - Welcoming message :) Telling you to use your API key while disabling any query functionalities
