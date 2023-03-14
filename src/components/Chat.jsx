@@ -17,7 +17,7 @@ function Chat() {
 
   return (
     <div className="w-screen h-screen p-5 flex flex-col justify-between z-10">
-      <div className="overflow-y-scroll max-h-[510px] sm:max-h-[690px] xsm:max-h-[720px] md:max-h-[75vh] lg:max-h-[78vh]">
+      <div className="overflow-y-scroll max-h-[75vh] sm:max-h-[80vh] xsm:max-h-[78vh] md:max-h-[75vh] lg:max-h-[78vh]">
         <Convo />
 
         <div ref={messagesEndRef} />
