@@ -20,7 +20,7 @@ function Input() {
       <button
         onClick={() => handleQuery()}
         className="ml-3 p-1 w-20 text-sm bg-teal-500 rounded-lg transition duration-300 hover:bg-teal-400 disabled:bg-gray-500"
-        disabled = {typing === true || apiInputLocal === null}
+        disabled = {typing === true || apiInputLocal === null || !input.startsWith("sk")}
       >
         Submit
       </button>

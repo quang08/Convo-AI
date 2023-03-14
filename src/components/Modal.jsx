@@ -70,8 +70,11 @@ function Modal() {
 
           <div className="w-[50%] flex justify-between gap-x-2">
             <button
-              className="p-1 text-sm md:text-md md:p-2 bg-teal-500 text-white font-bold rounded-lg flex justify-center items-center flex-1 transition duration-300 hover:bg-teal-400"
+              className="p-1 text-sm md:text-md md:p-2 bg-teal-500 text-white font-bold rounded-lg flex justify-center items-center flex-1 transition duration-300 hover:bg-teal-400 disabled:bg-gray-400"
               onClick={() => handleAPI()}
+              disabled={
+                !apiInput.startsWith("sk-")
+              }
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
