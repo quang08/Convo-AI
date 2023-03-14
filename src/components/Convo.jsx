@@ -42,13 +42,11 @@ function Convo() {
               <div className="text-white bg-gray-500 md:max-w-xl p-2 rounded-lg mt-10 text-left max-w-max">
                 {log.content}
               </div>
-              <div className="flex flex-1"></div>
             </div>
           );
         } else if (log.role === "user" && log.content) {
           return (
-            <div key={i} className="flex">
-              <div className="flex flex-1"></div>
+            <div key={i} className="flex justify-end">
               <div className="text-white bg-teal-500 p-2 rounded-lg mt-10 text-right max-w-max">
                 {log.content}
               </div>
@@ -64,13 +62,11 @@ function Convo() {
               <div className="text-white bg-gray-500 md:max-w-xl p-2 rounded-lg mt-10 text-left max-w-max">
                 {message.content}
               </div>
-              <div className="flex flex-1"></div>
             </div>
           );
         } else if (message.role === "user" && message.content !== null) {
           return (
-            <div key={i} className="flex">
-              <div className="flex flex-1"></div>
+            <div key={i} className="flex justify-end">          
               <div className="text-white bg-teal-500 p-2 rounded-lg mt-10 text-right max-w-max">
                 {message.content}
               </div>
