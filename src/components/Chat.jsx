@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useContext } from "react";
-import AppContext from "../context";
+import AppContext from "../utils/context";
 import Header from "./Header";
 import Convo from "./Convo";
 import Loading from "./Loading";

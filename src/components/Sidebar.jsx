@@ -1,10 +1,18 @@
-import { React, useContext } from "react";
-import AppContext from "../context";
+import { React, useContext, useState, useEffect } from "react";
+import AppContext from "../utils/context";
+
 import Socials from "./Socials";
+import Login from "./Login";
+import Logout from "./Logout";
+
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "../utils/firebase";
 
 function Sidebar() {
   const { setShowSidebar, showSidebar, handleNewChat, handleModal } =
     useContext(AppContext);
+
+  const [user, loading] = useAuthState(auth);
 
   return (
     <>
@@ -37,7 +45,7 @@ function Sidebar() {
         <div className="flex flex-col p-2 mt-5 h-[93%] gap-4">
           <button
             onClick={() => handleNewChat()}
-            className="dark:text-white text-black dark:bg-teal-500 bg-teal-400 p-2 rounded-lg text-lg transition duration-300 dark:hover:bg-teal-400 hover:bg-teal-300 font-bold flex items-center justify-center md:justify-start"
+            className="dark:text-white text-black dark:bg-teal-500 bg-teal-400 p-2 h-12 rounded-lg text-lg transition duration-300 dark:hover:bg-teal-400 hover:bg-teal-300 font-bold flex items-center justify-center md:justify-start"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -56,7 +64,7 @@ function Sidebar() {
           </button>
 
           <button
-            className="dark:text-white text-black rounded-lg text-lg dark:bg-teal-500 bg-teal-400 p-2 font-bold transition duration-300 dark:hover:bg-teal-400 hover:bg-teal-300 flex items-center justify-center md:justify-start"
+            className="dark:text-white text-black rounded-lg text-lg dark:bg-teal-500 bg-teal-400 p-2 h-12 font-bold transition duration-300 dark:hover:bg-teal-400 hover:bg-teal-300 flex items-center justify-center md:justify-start"
             onClick={handleModal}
           >
             <svg
@@ -75,6 +83,9 @@ function Sidebar() {
             <div></div>
           </button>
 
+          {!user && <Login />}
+
+          {user && <Logout />}
           <div className="flex flex-1 border-b-2 border-gray-400"></div>
 
           <Socials />
@@ -85,4 +96,3 @@ function Sidebar() {
 }
 
 export default Sidebar;
-

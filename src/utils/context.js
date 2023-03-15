@@ -1,4 +1,6 @@
-import { createContext, useState } from "react";
+import { createContext, useState, useEffect } from "react";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "./firebase";
 
 const AppContext = createContext();
 
@@ -10,6 +12,7 @@ export function AppContextProvider({ children }) {
   const [apiInput, setApiInput] = useState("");
   const [typing, setTyping] = useState(false);
   const [messages, setMessages] = useState([]); //to store the conversation history to send as a parameter to the API and to render the convo
+  const [user, setUser] = useState({});
   const [chatLog, setChatLog] = useState(() => {
     const apiInput = localStorage.getItem("apiInput");
     if (apiInput) {
@@ -38,6 +41,17 @@ export function AppContextProvider({ children }) {
       ];
     }
   });
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+      console.log("User: ", currentUser);
+    });
+
+    return () => {
+      unsubscribe();
+    };
+  }, []);
 
   const handleQuery = async () => {
     setTyping(true);
@@ -94,16 +108,6 @@ export function AppContextProvider({ children }) {
     ///store apiInput into localStorage
     localStorage.setItem("apiInput", apiInput);
     setShowModal(false);
-    // setChatLog([
-    //   {
-    //     role: "assistant",
-    //     content: "Welcome! How may I help you today?",
-    //   },
-    //   {
-    //     role: "user",
-    //     content: null,
-    //   },
-    // ]);
   };
 
   return (

@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import AppContext from "../context";
+import AppContext from "../utils/context";
 
 function Input() {
   const { handleQuery, input, setInput, typing } = useContext(AppContext);

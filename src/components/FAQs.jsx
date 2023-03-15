@@ -1,5 +1,5 @@
 import { React, useContext, useState } from "react";
-import AppContext from "../context";
+import AppContext from "../utils/context";
 import { data } from "../data";
 
 function FAQs() {
@@ -64,7 +64,9 @@ function FAQs() {
               className="p-2 border-2 border-white rounded-lg mb-3"
             >
               <div className="flex justify-between h-full items-center">
-                <span className="font-bold text-sm md:text-lg">{item.question}</span>
+                <span className="font-bold text-sm md:text-lg">
+                  {item.question}
+                </span>
                 <span className="text-right">
                   {isClicked === i ? "-" : "+"}
                 </span>

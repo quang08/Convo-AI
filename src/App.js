@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Chat from "./components/Chat";
 import Header from "./components/Header";
-import { AppContextProvider } from "./context";
+import { AppContextProvider } from "./utils/context";
 
 function App() {
   return (

@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import AppContext from "../context";
+import AppContext from "../utils/context";
 import Sidebar from "./Sidebar";
 import Switcher from "./Switcher";
 

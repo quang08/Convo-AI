@@ -1,5 +1,5 @@
 import { React, useContext, useEffect } from "react";
-import AppContext from "../context";
+import AppContext from "../utils/context";
 import FAQs from "./FAQs";
 
 function Modal() {
@@ -72,9 +72,7 @@ function Modal() {
             <button
               className="p-1 text-sm md:text-md md:p-2 bg-teal-500 text-white font-bold rounded-lg flex justify-center items-center flex-1 transition duration-300 hover:bg-teal-400 disabled:bg-gray-400"
               onClick={() => handleAPI()}
-              disabled={
-                !apiInput.startsWith("sk-")
-              }
+              disabled={!apiInput.startsWith("sk-")}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
