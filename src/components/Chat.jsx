@@ -1,10 +1,10 @@
 import React, { useEffect, useRef, useContext } from "react";
 import AppContext from "../utils/context";
-import Header from "./Header";
 import Convo from "./Convo";
 import Loading from "./Loading";
 import Input from "./Input";
 import Modal from "./Modal";
+
 
 function Chat() {
   const { messages, typing, showModal } = useContext(AppContext);

@@ -11,7 +11,11 @@ export function AppContextProvider({ children }) {
   const [input, setInput] = useState("");
   const [apiInput, setApiInput] = useState("");
   const [typing, setTyping] = useState(false);
-  const [messages, setMessages] = useState([]); //to store the conversation history to send as a parameter to the API and to render the convo
+  const [messages, setMessages] = useState(() => { //if there's saved messages then set it as the inital state, else empty
+    const storedMessages = localStorage.getItem("messages");
+    return storedMessages ? JSON.parse(storedMessages) : [];
+  });
+
   const [user, setUser] = useState({});
   const [chatLog, setChatLog] = useState(() => {
     const apiInput = localStorage.getItem("apiInput");
@@ -42,10 +46,22 @@ export function AppContextProvider({ children }) {
     }
   });
 
+  //to store and update the messages into localStorage between renders
   useEffect(() => {
+    localStorage.setItem("messages", JSON.stringify(messages));
+  }, [messages]);
+
+
+  useEffect(() => {
+    // retrieve saved messages from localStorage
+    const savedMessages = localStorage.getItem("messages");
+    if (savedMessages) {
+      setMessages(JSON.parse(savedMessages));
+    }
+
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
-      console.log("User: ", currentUser);
+      //console.log("User: ", currentUser);
     });
 
     return () => {
@@ -86,16 +102,19 @@ export function AppContextProvider({ children }) {
           ...messagesNew,
           { role: "assistant", content: data.choices[0].message.content },
         ]);
+        //save messages into localStorage
+        localStorage.setItem("messages", JSON.stringify(messages));
       })
       .then(() => {
         setTyping(false);
-      });
+      })
   };
 
   const handleNewChat = () => {
     setMessages([]);
     setShowSidebar(false);
-    localStorage.clear("apiInput");
+    localStorage.removeItem("apiInput"); //this is causing a problem as it's clearing the theme
+    localStorage.removeItem("messages");
     setApiInput("");
   };
 

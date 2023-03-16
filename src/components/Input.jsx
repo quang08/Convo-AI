@@ -1,9 +1,14 @@
 import React, { useContext } from "react";
 import AppContext from "../utils/context";
 
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "../utils/firebase";
+
 function Input() {
   const { handleQuery, input, setInput, typing } = useContext(AppContext);
   const apiInputLocal = localStorage.getItem("apiInput");
+  const [user, loading] = useAuthState(auth);
+
   return (
     <>
       <input
@@ -20,7 +25,7 @@ function Input() {
       <button
         onClick={() => handleQuery()}
         className="ml-3 p-1 w-20 text-sm dark:bg-teal-500 bg-teal-400 text-white rounded-lg transition duration-300 hover:bg-teal-400 disabled:bg-gray-500 dark:disabled:bg-gray-500"
-        disabled={typing === true || apiInputLocal === null}
+        disabled={typing === true || apiInputLocal === null || !user}
       >
         Submit
       </button>
