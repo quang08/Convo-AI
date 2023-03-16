@@ -15,7 +15,6 @@ export function AppContextProvider({ children }) {
     const storedMessages = localStorage.getItem("messages");
     return storedMessages ? JSON.parse(storedMessages) : [];
   });
-
   const [user, setUser] = useState({});
   const [chatLog, setChatLog] = useState(() => {
     const apiInput = localStorage.getItem("apiInput");
