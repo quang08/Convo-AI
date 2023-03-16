@@ -3,14 +3,19 @@
 - Designed a new User Interface with smooth User Experience (snap to latest message, animated loading indicator, hovering effects)
 - Use your own API to converse with the bot !
 - Switchable theme - persist through refresh
+- Option to log in with Google and have your avatar displayed 
+- Messages persist throught refresh :)
 
 # First Mount
 - Welcoming message :) Telling you to use your API key while disabling any query functionalities
 <img width="661" alt="1" src="https://user-images.githubusercontent.com/84165564/224532615-6a84089f-cca2-4306-bdd1-29709765c67e.png">
 
+# First Mount (with Google signed in)
+![signed](https://user-images.githubusercontent.com/84165564/225588555-361dc7df-65f6-43a3-af95-b6a30cd57344.png)
+
 # Menu Sidebar
-- Where you can have the options to have New Chat and use your own API Key
-<img width="662" alt="2" src="https://user-images.githubusercontent.com/84165564/224532613-af18a532-7dfd-44e3-a3b5-6e533c19023a.png">
+- Where you can have the options to have New Chat and use your own API Key, also sign in with Google !
+![signin](https://user-images.githubusercontent.com/84165564/225588544-fb4c4adb-c07a-4981-8778-05556a7ac5a0.png)
 
 # Pop-up Modal for you to enter your API Key
 <img width="1143" alt="3" src="https://user-images.githubusercontent.com/84165564/224532612-e5dca251-2d53-44e9-a689-5db2e6a7bd1b.png">
@@ -36,6 +41,10 @@
 - Clear the current conversation and API Key so you can start a new one
 - With aesthestically pleasing hovering effect
 <img width="672" alt="6" src="https://user-images.githubusercontent.com/84165564/224532606-ac1aca18-e373-4130-97cd-5d23b97ae4d1.png">
+
+# Light Mode
+- Even when refreshed, the theme will still persist !
+![light](https://user-images.githubusercontent.com/84165564/225588529-93e1774f-da99-43ea-b718-cfd6dc45af05.png)
 
 # Menu View (Phone View)
 - Get in touch :)
