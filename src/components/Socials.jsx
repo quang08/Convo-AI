@@ -6,7 +6,7 @@ function Socials() {
       <div className="transition duration-300 hover:-translate-y-1">
         <a href="https://github.com/quang08" target="_blank" rel="noreferrer">
           <svg
-            className="inline w-10 h-10 dark:fill-white hover:fill-teal-500"
+            className="inline w-10 h-10 dark:fill-white hover:fill-teal-500 dark:hover:fill-teal-500"
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 496 512"
           >
@@ -22,7 +22,7 @@ function Socials() {
           rel="noreferrer"
         >
           <svg
-            className="inline w-10 h-10 dark:fill-white hover:fill-teal-500"
+            className="inline w-10 h-10 dark:fill-white hover:fill-teal-500 dark:hover:fill-teal-500"
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 448 512"
           >
@@ -38,7 +38,7 @@ function Socials() {
           rel="noreferrer"
         >
           <svg
-            className="inline w-10 h-10 dark:fill-white  hover:fill-teal-500"
+            className="inline w-10 h-10 dark:fill-white  hover:fill-teal-500 dark:hover:fill-teal-500"
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 448 512"
           >
@@ -54,7 +54,7 @@ function Socials() {
           rel="noreferrer"
         >
           <svg
-            className="inline w-10 h-10 dark:fill-white  hover:fill-teal-500"
+            className="inline w-10 h-10 dark:fill-white  hover:fill-teal-500 dark:hover:fill-teal-500"
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 320 512"
           >

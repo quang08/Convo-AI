@@ -1,18 +1,8 @@
-import React from "react";
-import { auth } from "../utils/firebase";
-import { getAuth, signOut } from "firebase/auth";
+import React, {useContext} from "react";
+import AppContext from "../utils/context";
 
 function Logout() {
-  const auth = getAuth();
-  const logOut = async () => {
-    try {
-      signOut(auth).then(() => {
-        console.log("signed out");
-      });
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  const { logOut } = useContext(AppContext);
 
   return (
     <button

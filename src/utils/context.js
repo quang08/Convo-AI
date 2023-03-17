@@ -1,6 +1,7 @@
 import { createContext, useState, useEffect } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./firebase";
+import { getAuth, signOut } from "firebase/auth";
 
 const AppContext = createContext();
 
@@ -11,7 +12,8 @@ export function AppContextProvider({ children }) {
   const [input, setInput] = useState("");
   const [apiInput, setApiInput] = useState("");
   const [typing, setTyping] = useState(false);
-  const [messages, setMessages] = useState(() => { //if there's saved messages then set it as the inital state, else empty
+  const [messages, setMessages] = useState(() => {
+    //if there's saved messages then set it as the inital state, else empty
     const storedMessages = localStorage.getItem("messages");
     return storedMessages ? JSON.parse(storedMessages) : [];
   });
@@ -49,7 +51,6 @@ export function AppContextProvider({ children }) {
   useEffect(() => {
     localStorage.setItem("messages", JSON.stringify(messages));
   }, [messages]);
-
 
   useEffect(() => {
     // retrieve saved messages from localStorage
@@ -106,7 +107,22 @@ export function AppContextProvider({ children }) {
       })
       .then(() => {
         setTyping(false);
-      })
+      });
+  };
+
+  const auth = getAuth();
+  const logOut = async () => {
+    try {
+      signOut(auth)
+        .then(() => {
+        console.log("signed out");
+        })
+        .then(() => {
+          setShowSidebar(false);
+        })
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const handleNewChat = () => {
@@ -115,6 +131,8 @@ export function AppContextProvider({ children }) {
     localStorage.removeItem("apiInput"); //this is causing a problem as it's clearing the theme
     localStorage.removeItem("messages");
     setApiInput("");
+    logOut();
+    setShowSidebar(false);
   };
 
   const handleModal = () => {
@@ -150,6 +168,7 @@ export function AppContextProvider({ children }) {
         apiInput,
         setApiInput,
         handleAPI,
+        logOut
       }}
     >
       {children}

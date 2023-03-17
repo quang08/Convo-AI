@@ -25,7 +25,7 @@ function Input() {
       <button
         onClick={() => handleQuery()}
         className="ml-3 p-1 w-20 text-sm dark:bg-teal-500 bg-teal-400 text-white rounded-lg transition duration-300 hover:bg-teal-400 disabled:bg-gray-500 dark:disabled:bg-gray-500"
-        disabled={typing === true || apiInputLocal === null || !user}
+        disabled={typing === true || apiInputLocal === null}
       >
         Submit
       </button>
