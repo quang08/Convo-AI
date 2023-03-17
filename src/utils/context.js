@@ -102,8 +102,6 @@ export function AppContextProvider({ children }) {
           ...messagesNew,
           { role: "assistant", content: data.choices[0].message.content },
         ]);
-        //save messages into localStorage
-        // localStorage.setItem("messages", JSON.stringify(messages));
       })
       .then(() => {
         setTyping(false);
